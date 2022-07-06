@@ -28,7 +28,9 @@ public class SaverClass {
         for (Method method:methods) {
             if(method.isAnnotationPresent(Saver.class))
             {
-                method.invoke(new TextContainer(),TextContainer.text,fileadress);
+                Field field= cls.getField("text");
+                String str= (String)field.get(cls);
+                method.invoke(textcontainer,str,fileadress);
             }
         }
 
